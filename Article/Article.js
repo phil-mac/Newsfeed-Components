@@ -85,6 +85,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: '10 shocking reasons for something or other',
+    date: 'Jan 23rd, 2019',
+    firstParagraph: `Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait.`,
+
+    secondParagraph: `Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait.`,
+
+    thirdParagraph: `Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait.`,
+  }
+  ,
+  {
+    title: 'Some weather event might be the worst ever!',
+    date: 'Jan 23rd, 2019',
+    firstParagraph: `Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait.`,
+
+    secondParagraph: `Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait.`,
+
+    thirdParagraph: `Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait. Clickbait, clickbait, clickbait, clickbait, clickbait, clickbait.`,
   }
 ];
 
@@ -112,3 +131,49 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articlesCont = document.querySelector('.articles');
+
+data.forEach(article => {
+  articlesCont.appendChild(articleMaker(article.title, article.date, article.firstParagraph, article.secondParagraph, article.thirdParagraph));
+})
+
+
+function articleMaker(title, date, firstP, secondP, thirdP){
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstP = document.createElement('p');
+  const articleSecondP = document.createElement('p');
+  const articleThirdP = document.createElement('p');
+  const button = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirstP);
+  article.appendChild(articleSecondP);
+  article.appendChild(articleThirdP);
+  article.appendChild(button);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  button.classList.add('expandButton');
+
+  button.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+    if (button.textContent === 'Expand'){
+      button.textContent = 'Collapse';
+    } else {
+      button.textContent = 'Expand';
+    }
+  })
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleFirstP.textContent = firstP;
+  articleSecondP.textContent = secondP;
+  articleThirdP.textContent = thirdP;
+  button.textContent = 'Expand';
+
+  return article;
+}
