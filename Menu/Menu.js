@@ -52,8 +52,20 @@ function createMenuComp(items){
   })
 
   const menuButton = document.querySelector('.menu-button');
+
+  menu.classList.add('menu--open');
+  TweenMax.to(menu, 0, {x:-350});
+
+  let menuOpen = false;
+
   menuButton.addEventListener('click', () => {
-    menu.classList.toggle('menu--open');
+    if (menuOpen){
+      TweenMax.to(menu, 1, {x:-350, ease:Bounce.easeOut});
+      menuOpen = false;
+    }else{
+      TweenMax.to(menu, 1, {x:0, ease:Bounce.easeOut});
+      menuOpen = true;
+    }
   })
 
   return menu;
