@@ -161,10 +161,10 @@ function articleMaker(title, date, firstP, secondP, thirdP){
 
   button.addEventListener('click', () => {
     article.classList.toggle('article-open');
-    if (button.textContent === 'Expand'){
-      button.textContent = 'Collapse';
+    if (button.textContent === 'Click to Expand'){
+      button.textContent = 'Click to Close';
     } else {
-      button.textContent = 'Expand';
+      button.textContent = 'Click to Expand';
     }
   })
 
@@ -173,7 +173,7 @@ function articleMaker(title, date, firstP, secondP, thirdP){
   articleFirstP.textContent = firstP;
   articleSecondP.textContent = secondP;
   articleThirdP.textContent = thirdP;
-  button.textContent = 'Expand';
+  button.textContent = 'Click to Expand';
 
   return article;
 }
